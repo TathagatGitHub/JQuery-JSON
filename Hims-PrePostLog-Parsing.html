@@ -3,15 +3,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>JSON Q Development</title>
-
-</head>
-
-<body>
-<div id="qunit"></div>
-<div id="jsonCont"></div>
-</body>
-</html>
-
 <script src="jsonQ.js" type="text/javascript" ></script>
 <script
   src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -163,37 +154,82 @@ function recursiveGetProp(obj, lookup, callback) {
     }
 }
 
-recursiveGetProp(yourObj, 'dataobject', function(obj) {
+function addStuff()
+{
+   recursiveGetProp(yourObj, 'dataobject', function(obj) {
   
 
 
-});
+}); 
+}
 
 function extractJSON(yourObj) {
 for (const i in yourObj) {
     if (Array.isArray(yourObj[i]) || typeof yourObj[i] === 'object') {
-      console.log( i + ' is array or object');
+     // console.log( i + ' is array or object');
 
 if (i == 'Data')
       {
         var j=0;
         console.log(yourObj.Data.length);
+         var t = '<table><tr><th>Network Name</th><th>Day Part Desc</th><th>Spot Len</th><th>Rate</th><th>Imp</th><th>Spot Date</th><th>Media Type Code</th><th>ISCI</th><th>Sigma Program Name</th></tr>';
+          var tr;
         for (j=0; j<yourObj.Data.length;j++)
         {
-          console.log( yourObj.Data[j]["SigmaProgramName"]);
+         // console.log( yourObj.Data[j]["SigmaProgramName"]);
+         // var SigmaPN = (yourObj.Data[j]["SigmaProgramName"]);
+          tr = '<tr>';
+            tr+='<td>' + yourObj.Data[j]["NetworkName"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["DayPartDesc"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["SpotLen"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["Rate"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["Imp"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["SpotDate"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["SpotTime"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["MediaTypeCode"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["ISCI"] + '</td>';
+            tr+='<td>' + yourObj.Data[j]["SigmaProgramName"] + '</td>';
+            tr+='</tr>';
+
+            // tr.append("<td>" + yourObj.Data[j]["DayPartDesc"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["SpotLen"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["Rate"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["Imp"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["SpotDate"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["SpotTime"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["MediaTypeCode"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["ISCI"] + "</td>");
+            // tr.append("<td>" + yourObj.Data[j]["SigmaProgramName"] + "</td>");
+            // tr.append("</tr>");
+            t+=tr;
+       
      
         
         }
-        
+         t+='</table>';
+        $("#jsonData").append(t);
+        console.log(t); 
       }
   
 
       extractJSON(yourObj[i]);
    
     } else {
-      console.log(i + ': ' + yourObj[i]);
+     // console.log(i + ': ' + yourObj[i]);
     }
   }
 }
-                      
+                    
 </script>
+
+</head>
+
+<body>
+<button onclick="addStuff()">Add Stuff</button>
+<div id="jsonData"></div>
+
+</body>
+</html>
+
+
+
