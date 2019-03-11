@@ -1,0 +1,108 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.ajax({url: "http://api.apixu.com/v1/current.json?key=9a61e0ad6654495394d20958152311&q=90620", success: function(result, status, xhr){
+     
+     /// Directly accessing the values from JSON object
+//console.log (result.location.name);
+// console.log (result.current.condition.text);
+
+
+/// Converting first the object into String and then parsing. 
+ var myJSON = JSON.stringify(result);
+///
+
+ var newjaon = {"location": [{"name": "Cypress","region": "California","country": "USA","lat": 33.84,"lon": -118.01,
+    "tz_id": "America/Los_Angeles",
+    "localtime_epoch": 1549852269,
+    "localtime": "2019-02-10 18:31"
+  },{
+    "name": "buena park",
+    "region": "California",
+    "country": "USA",
+    "lat": 33.84,
+    "lon": -118.01,
+    "tz_id": "America/Los_Angeles",
+    "localtime_epoch": 1549852269,
+    "localtime": "2019-02-10 18:31"
+  }],
+  "current": [{
+    "last_updated_epoch": 1549851308,
+    "last_updated": "2019-02-10 18:15",
+    "temp_c": 12.2,
+    "temp_f": 54,
+    "is_day": 0,
+    "condition": {
+      "text": "Overcast",
+      "icon": "//cdn.apixu.com/weather/64x64/night/122.png",
+      "code": 1009
+    },
+    "wind_mph": 6.9,
+    "wind_kph": 11.2,
+    "wind_degree": 230,
+    "wind_dir": "SW",
+    "pressure_mb": 1015,
+    "pressure_in": 30.5,
+    "precip_mm": 0.5,
+    "precip_in": 0.02,
+    "humidity": 64,
+    "cloud": 100,
+    "feelslike_c": 11.1,
+    "feelslike_f": 52,
+    "vis_km": 16,
+    "vis_miles": 9,
+    "uv": 0
+  },{
+    "last_updated_epoch": 1549851308,
+    "last_updated": "2019-02-10 18:15",
+    "temp_c": 12.2,
+    "temp_f": 54,
+    "is_day": 0,
+    "condition": {
+      "text": "Heavy rain",
+      "icon": "//cdn.apixu.com/weather/64x64/night/122.png",
+      "code": 1009
+    },
+    "wind_mph": 6.9,
+    "wind_kph": 11.2,
+    "wind_degree": 230,
+    "wind_dir": "SW",
+    "pressure_mb": 1015,
+    "pressure_in": 30.5,
+    "precip_mm": 0.5,
+    "precip_in": 0.02,
+    "humidity": 64,
+    "cloud": 100,
+    "feelslike_c": 11.1,
+    "feelslike_f": 52,
+    "vis_km": 16,
+    "vis_miles": 9,
+    "uv": 0
+  }]
+};
+ var myJSON1 = JSON.stringify(newjaon);
+var obj1=JSON.parse(myJSON1);
+console.log(obj1);
+console.log(obj1.location[1].name);
+ for (var i = 0; i < obj1.length; i++) {
+    console.log(obj1.location[i].name);
+        }
+
+
+    }});
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+<p id="jsonData"></p>
+
+</body>
+</html>

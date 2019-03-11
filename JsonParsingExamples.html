@@ -1,0 +1,203 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    $.ajax({url: "http://api.apixu.com/v1/current.json?key=9a61e0ad6654495394d20958152311&q=90620", success: function(result, status, xhr){
+     
+     /// Directly accessing the values from JSON object
+// console.log (result.location.name);
+// console.log (result.current.condition.text);
+
+
+/// Converting first the object into String and then parsing. 
+ var myJSON = JSON.stringify(result);
+///
+
+ var newjaon = {"location": [{"name": "Cypress","region": "California","country": "USA","lat": 33.84,"lon": -118.01,
+    "tz_id": "America/Los_Angeles",
+    "localtime_epoch": 1549852269,
+    "localtime": "2019-02-10 18:31"
+  },{
+    "name": "buena park",
+    "region": "California",
+    "country": "USA",
+    "lat": 33.84,
+    "lon": -118.01,
+    "tz_id": "America/Los_Angeles",
+    "localtime_epoch": 1549852269,
+    "localtime": "2019-02-10 18:31"
+  }],
+  "current": [{
+    "last_updated_epoch": 1549851308,
+    "last_updated": "2019-02-10 18:15",
+    "temp_c": 12.2,
+    "temp_f": 54,
+    "is_day": 0,
+    "condition": {
+      "text": "Overcast",
+      "icon": "//cdn.apixu.com/weather/64x64/night/122.png",
+      "code": 1009
+    },
+    "wind_mph": 6.9,
+    "wind_kph": 11.2,
+    "wind_degree": 230,
+    "wind_dir": "SW",
+    "pressure_mb": 1015,
+    "pressure_in": 30.5,
+    "precip_mm": 0.5,
+    "precip_in": 0.02,
+    "humidity": 64,
+    "cloud": 100,
+    "feelslike_c": 11.1,
+    "feelslike_f": 52,
+    "vis_km": 16,
+    "vis_miles": 9,
+    "uv": 0
+  },{
+    "last_updated_epoch": 1549851308,
+    "last_updated": "2019-02-10 18:15",
+    "temp_c": 12.2,
+    "temp_f": 54,
+    "is_day": 0,
+    "condition": {
+      "text": "Heavy rain",
+      "icon": "//cdn.apixu.com/weather/64x64/night/122.png",
+      "code": 1009
+    },
+    "wind_mph": 6.9,
+    "wind_kph": 11.2,
+    "wind_degree": 230,
+    "wind_dir": "SW",
+    "pressure_mb": 1015,
+    "pressure_in": 30.5,
+    "precip_mm": 0.5,
+    "precip_in": 0.02,
+    "humidity": 64,
+    "cloud": 100,
+    "feelslike_c": 11.1,
+    "feelslike_f": 52,
+    "vis_km": 16,
+    "vis_miles": 9,
+    "uv": 0
+  }]
+};
+ var myJSON1 = JSON.stringify(newjaon);
+var obj1=JSON.parse(myJSON1);
+console.log(obj1)
+
+/// New loop//
+ // let array = [];
+ var i = 0;
+ var j= 0;
+  Object.keys(obj1).forEach(key => {
+     if (key=='location'){
+//console.log(`key= ${key}`);
+ //forEach(obj1.location)
+ //{
+//  // console.log (obj1[key]);
+//      console.log(obj1.location[i].name);
+//     i=i+1;
+// }
+
+            for(var k in obj1.location) {
+               console.log(k, obj1.location[k].name);
+            }
+    // console.log (obj1[key]);
+    //  console.log(obj1.location[i].name);
+    // i=i+1;
+      }
+
+else
+      {
+        //console.log(`key= ${key}`);
+
+        for(var k in obj1.current) {
+   console.log(k, obj1.current[k].last_updated_epoch);
+ console.log(k, obj1.current[k].humidity);
+     
+      }
+    // console.log (obj1[key]);
+    //   console.log(obj1.current[j].last_updated_epoch);
+    //   console.log(obj1.current[j].humidity);
+    //  j=j+1;
+      }
+   //console.log(result[key]);
+  })
+
+// new loop ends
+
+////
+//console.log (myJSON);
+
+///again converting string into object and accessing.
+// var obj = JSON.parse(myJSON);
+// console.log (obj.location.name);
+// console.log  (obj.current.temp_f);
+// console.log  (obj.current.temp_c);
+// console.log (obj.current.last_updated_epoch);
+// console.log (obj.current.humidity);
+// console.log (obj.current.condition.text);
+
+
+// 2nd way //
+
+
+  let array = [];
+  Object.keys(result).forEach(key => {
+  	 if (key=='location'){
+console.log(`key= ${key}`);
+    console.log (result[key]);
+     console.log(result[key].name);
+    console.log(result[key].region);
+    console.log(result[key].country);
+}
+
+else
+      {
+        console.log(`key= ${key}`);
+    console.log (result[key]);
+      console.log(result[key].last_updated_epoch);
+      console.log(result[key].humidity);
+      console.log(result[key].condition.icon);
+      }
+   //console.log(result[key]);
+  })
+
+  //3rd way//
+
+//     Object.keys(result).map(e => {
+//     	if (e=='location'){
+// console.log(`key= ${e}`);
+//     console.log (result[e]);
+//      console.log(result[e].name);
+//     console.log(result[e].region);
+//     console.log(result[e].country);
+
+//     	}
+//     	else
+//     	{
+//     		console.log(`key= ${e}`);
+//     console.log (result[e]);
+//       console.log(result[e].last_updated_epoch);
+//       console.log(result[e].humidity);
+//       console.log(result[e].condition.icon);
+//     	}
+    
+// });  
+ 
+
+    }});
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>Let jQuery AJAX Change This Text</h2></div>
+
+<button>Get External Content</button>
+
+</body>
+</html>

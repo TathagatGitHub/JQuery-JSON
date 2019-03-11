@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>
+		var x = {"age":56,
+				  "name":"John", 
+				  "cars": [{"name":"ford","year":1925,"color":"blue"}, {"name":"Audi", "year": 1995, "color": "white"}], 
+				  "family": { "father": "Dad", "ageofdad":"56", "siblings":"Brother"}, 
+				  "dog":true, 
+				  "middlename":null 
+				}
+		console.log(x["name"]);
+		console.log(x.cars[0]["name"]);
+		console.log(x.family["siblings"]);
+		console.log(x["dog"]);
+		console.log(x.cars[1]["color"]);
+        var text = JSON.stringify(x);
+		var obj = JSON.parse(text, function (key, value) {
+			
+                   if (key == "dog") {
+                            console.log(key +":"+value);
+                    } 
+                     else {
+                          console.log(key +":"+value);
+                          }
+                   });
+
+
+
+		//console.log(obj1);
+		//console.log(obj1.age);
+		//console.log(obj1.cars[1].name);
+		//console.log();
+	</script>
+</head>
+<body>
+
+</body>
+</html>

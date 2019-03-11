@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JSON Q Development</title>
+
+</head>
+
+<body>
+<div id="qunit"></div>
+<div id="jsonCont"></div>
+</body>
+</html>
+
+<script src="jsonQ.js" type="text/javascript" ></script>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+  crossorigin="anonymous"></script>
+<script>
+ var yourObj = {
+    "Status": "Success",
+    "dataobject":{
+      "TotalRecords":5786,
+      "Data": [
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Fringe",
+            "SpotLen": 30,
+            "Rate": 105,
+            "Imp": 0,
+            "SpotDate": "2019-02-18",
+            "SpotTime": "15:47:29",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5303H",
+            "SigmaProgramName": "THE BREAKFAST CLUB"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Fringe",
+            "SpotLen": 30,
+            "Rate": 105,
+            "Imp": 0,
+            "SpotDate": "2019-02-19",
+            "SpotTime": "17:06:26",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5303H",
+            "SigmaProgramName": ""
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Fringe",
+            "SpotLen": 30,
+            "Rate": 105,
+            "Imp": 0,
+            "SpotDate": "2019-02-22",
+            "SpotTime": "15:42:48",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5303H",
+            "SigmaProgramName": "THE 5TH WAVE"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-12",
+            "SpotTime": "02:44:43",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5603H",
+            "SigmaProgramName": "BIRDMAN"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-13",
+            "SpotTime": "04:08:49",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5603H",
+            "SigmaProgramName": "INTO THE BADLANDS"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-13",
+            "SpotTime": "04:49:25",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5603H",
+            "SigmaProgramName": "INTO THE BADLANDS"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-15",
+            "SpotTime": "01:58:11",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5603H",
+            "SigmaProgramName": "JURASSIC PARK 2"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-15",
+            "SpotTime": "04:16:07",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5603H",
+            "SigmaProgramName": "THE PUNISHER"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-18",
+            "SpotTime": "03:55:40",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5303H",
+            "SigmaProgramName": "FOOTLOOSE"
+        },
+        {
+            "NetworkName": "AMC",
+            "DayPartDesc": "Overnight",
+            "SpotLen": 30,
+            "Rate": 20,
+            "Imp": 0,
+            "SpotDate": "2019-02-18",
+            "SpotTime": "05:02:47",
+            "MediaTypeCode": "NatCbl",
+            "ISCI": "HIMSTV5303H",
+            "SigmaProgramName": "THE THREE STOOGES"
+
+    }
+    ]
+    
+        }
+        
+};
+
+function recursiveGetProp(obj, lookup, callback) {
+    for (property in obj) {
+        if (property == lookup) {
+          console.log(property);
+          extractJSON(obj);
+            callback(obj[property]);
+        } else if (obj[property] instanceof Object) {
+          console.log(property);
+            recursiveGetProp(obj[property], lookup, callback);
+        }
+    }
+}
+
+recursiveGetProp(yourObj, 'dataobject', function(obj) {
+  
+
+
+});
+
+function extractJSON(yourObj) {
+for (const i in yourObj) {
+    if (Array.isArray(yourObj[i]) || typeof yourObj[i] === 'object') {
+      console.log( i + ' is array or object');
+
+if (i == 'Data')
+      {
+        var j=0;
+        console.log(yourObj.Data.length);
+        for (j=0; j<yourObj.Data.length;j++)
+        {
+          console.log( yourObj.Data[j]["SigmaProgramName"]);
+     
+        
+        }
+        
+      }
+  
+
+      extractJSON(yourObj[i]);
+   
+    } else {
+      console.log(i + ': ' + yourObj[i]);
+    }
+  }
+}
+                      
+</script>
